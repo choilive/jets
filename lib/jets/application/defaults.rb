@@ -157,6 +157,8 @@ class Jets::Application
 
       config.hot_reload = Jets.env.development?
 
+      config.time_zone = "UTC"
+      
       config
     end
 

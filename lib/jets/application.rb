@@ -22,6 +22,7 @@ class Jets::Application
     load_environments_config
     load_db_config
     set_iam_policy # relies on dependent values, must be called afterwards
+    set_timezone
     normalize_env_vars!
   end
 
@@ -202,6 +203,10 @@ class Jets::Application
       configurations = ActiveRecord::DatabaseConfigurations.new(db_configs)
       config.database = configurations
     end
+  end
+
+  def set_timezone
+    Time.zone = config.time_zone
   end
 
   # Naming it routes because config/routes.rb requires
